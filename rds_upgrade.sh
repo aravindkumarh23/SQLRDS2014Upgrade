@@ -53,7 +53,7 @@ echo "AWS SQL RDS INPLACE-UPGRADE" | sed  -e :a -e "s/^.\{1,$(tput cols)\}$/ & /
 echo ----------------------------------------------------------------------------------------------------------------------------------------------------
 echo ----------------------------------------------------------------------------------------------------------------------------------------------------
 echo ----------------------------------------------------------------------------------------------------------------------------------------------------
-: <<'END_COMMENT'
+
 echo "Enter Source RDS Instance identifier"
 read source_db_instance_identifier
 
@@ -78,11 +78,9 @@ read target_major_engine_version
 
 echo "Enter RDS Instance target engine version(Example:15.00.4345.5.v1)"
 read target_engine_version
-END_COMMENT
+
 
 echo "RDS instance's SQL Server Engine before upgrade">>upgrade_output.log 
-source_engineversion=`aws rds describe-db-instances --db-instance-identifier $source_db_instance_identifier --query 'DBInstances[*].EngineVersion'`
-
 source_engineversion=`aws rds describe-db-instances --db-instance-identifier $source_db_instance_identifier --query 'DBInstances[*].EngineVersion'`
 source_engineversion=`sed -e 's/^"//' -e 's/"$//' <<<"$source_engineversion"`
 echo $source_engineversion>>upgrade_output.log 
@@ -231,6 +229,8 @@ done
 
 echo "RDS instance's SQL Server Engine after upgrade">>upgrade_output.log 
 source_engineversion=`aws rds describe-db-instances --db-instance-identifier $source_db_instance_identifier --query 'DBInstances[*].EngineVersion'`
+source_engineversion=`sed -e 's/^"//' -e 's/"$//' <<<"$source_engineversion"`
+echo $source_engineversion>>upgrade_output.log 
 
 echo "Upgrade completed successfully">>upgrade_output.log
 end=`date +%s`
