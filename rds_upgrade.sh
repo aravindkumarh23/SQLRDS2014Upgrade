@@ -21,9 +21,10 @@
 #AWS CLI latest version
 #Python latest version
 #Source SQL RDS Instance to upgrade
-#Note : Tool will   run successfully only when compatabile and supported values are passed. For more information, refer to  :https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html for more information
-#Example if 2014 SQL Server RDS has SSAS DB Option enabled, when you try to copy DB Parameters to SQL Server 2022, this will fail since SSAS is not supported by RDS for SQL Server.
-#If you have SSRS DB option enabled on the source RDS,provide permission on the SSRS Secrets in Secrets manager. For more information, refer to https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.SSRS.html
+#Note : Tool will   run successfully only when compatabile and supported values are passed. For more information, refer to  :https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html
+#Example if your RDS for SQL Server 2014 has SSAS DB Option enabled, when you try to copy DB Parameters to  RDS for SQL Server 2022, this will fail since SSAS is not supported by RDS for SQL Server 2022.
+#If you are trying to enable MultiAZ on RDS for SQL Server 2014 that has MSDTC Option enabled, this will fail since MultiAZ is not supported when MSDTC is enabled.
+#If you have SSRS DB option enabled on the source RDS,provide permission on the SSRS Secrets to the new Option Group (target_option_group_name) in Secrets manager. Only then SSRS copy will be successful. For more information, refer to https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.SSRS.html
 
 
 #############################################################################################################################################################################################################
