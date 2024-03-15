@@ -1,4 +1,4 @@
-# sqlrdsupgrade
+# SQLRDS2014Upgrade
 SQL RDS Upgrade from 2014 to higher version
 
 # What this Automation Tool does  ?
@@ -33,3 +33,10 @@ This process is a single-click deployment that will enable customers perform the
 ## How to Run this ?
 
 All you need to do is , execute this shell script `rds_upgrade.sh` and provide requested inputs. Take a break ! We will take care of the upgrade.
+
+## What does each file do ?
+
+- `rds_upgrade_2014.sh` This is the main file that need to be run for executing the upgrade. 
+- `db_options.py` This python file performs json parsing , creates an output that serve as input for option group and parameter group creation. 
+- `og_input.json` & `og_output.json` are used to create option group.
+- `source_pg.json` file is used to create parameter group.
